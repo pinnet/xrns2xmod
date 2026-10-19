@@ -162,7 +162,7 @@ namespace Xrns2XMod
             Bass.BASS_StreamFree(handle);
         }
 
-		public static Stream GetModEncodedSample(int handle, long sampleLength, PROTRACKER_COMPATIBILITY_MODE ptCompatibility)
+		public static Stream GetModEncodedSample(int handle, long sampleLength, PROTRACKER_COMPATIBILITY_MODE ptCompatibility, bool isLooped)
         {
             byte[] buffer = new byte[sampleLength];
 
@@ -180,17 +180,12 @@ namespace Xrns2XMod
 			// BASS gives us unsigned 8 bit sample data. we need signed one!
 
             // Amiga ProTracker compatibility
-            // all samples with no loop should begin with two bytes of 0 value (Thanks to Jojo of OpenMPT for the hints)            
-			if (ptCompatibility != PROTRACKER_COMPATIBILITY_MODE.NONE)
+            // all samples with no loop should begin with two bytes of 0 value (Thanks to Jojo of OpenMPT for the hints)
+            // (looped samples are left alone, or the silence would be played on every loop)
+			if (ptCompatibility != PROTRACKER_COMPATIBILITY_MODE.NONE && !isLooped)
 			{
-				for (int i = 0; i < 2; i++)
-				{
-					byte value = reader.ReadByte();
-					if (value != 128)
-						writer.Write(0);
-				}
-
-				inputSample.Seek(0, SeekOrigin.Begin);
+				writer.Write((sbyte)0);
+				writer.Write((sbyte)0);
 			}
 
 			for (uint i = 0; i < totalDataWritten; i++)
