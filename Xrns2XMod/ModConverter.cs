@@ -122,6 +122,10 @@ namespace Xrns2XMod
             if (songData.NumChannels < minChannels)
                 throw new ConversionException("MOD format requires a minimum of 4 channels");
 
+            // ProTracker (and the Amiga) play exactly 4 channels
+            if (Settings.ForceProTrackerCompatibility != PROTRACKER_COMPATIBILITY_MODE.NONE && songData.NumChannels > minChannels)
+                throw new ConversionException(string.Format("ProTracker compatibility mode allows only 4 channels, song has {0}", songData.NumChannels));
+
             return true;
         }
 
@@ -487,7 +491,8 @@ namespace Xrns2XMod
             bool isMasterTrackCommandUsed = false;
 
             // force number of mastertrack columns to parse at x value; any column beyond the x value will be ignored
-            const int maxMasterTrackColumnToParse = 0;
+            // (as XMConverter does; 0 here meant speed, tempo and pattern break on the master track were dropped)
+            const int maxMasterTrackColumnToParse = 1;
 
             int numMasterTrackColumnsToParse = maxMasterTrackColumnToParse;
 
@@ -572,7 +577,7 @@ namespace Xrns2XMod
                             period = modUtils.GetModNote(trackLineData.Note, sampleNumber - 1, currentChannel - 1, isTonePortamentoTriggered);
                         }
                         catch (Exception e)
-                        {                                                        
+                        {
                             string errorMessage = string.Format("row {0}, instrument {1}, channel {2}: {3}", currentRow, (sampleNumber-1), currentChannel, e.Message);
                             OnReportProgress(new EventReportProgressArgs(errorMessage, MsgType.ERROR));
                         }
@@ -595,6 +600,22 @@ namespace Xrns2XMod
                         {
                             string errorMessage = string.Format("row {0}, channel {1}: {2}", currentRow, currentChannel, e.Message);
                             OnReportProgress(new EventReportProgressArgs(errorMessage, MsgType.ERROR));
+                        }
+                    }
+
+                    // note off: MOD has no note off, so silence the channel with C00
+                    if (trackLineData.Note == "OFF")
+                    {
+                        if (isEffectCommandUsed == false)
+                        {
+                            isEffectCommandUsed = true;
+                            effectNum = 0xC;
+                            effectVal = 0;
+                        }
+                        else
+                        {
+                            string errorMessage = string.Format("row {0}, channel {1}: {2}", currentRow, currentChannel, "Note off not converted (effect column already used)");
+                            OnReportProgress(new EventReportProgressArgs(errorMessage, MsgType.WARNING));
                         }
                     }
 
@@ -680,7 +701,41 @@ namespace Xrns2XMod
 
             }
 
+            // MOD patterns are always 64 rows: end a shorter pattern with a pattern break on its last row
+            if (patternData.NumRows < numRows4Pattern)
+                AddPatternBreakOnLastRow(data, patternData.NumRows - 1, numChannels);
+
             return data;
+        }
+
+        private void AddPatternBreakOnLastRow(byte[] data, int lastRow, int numChannels)
+        {
+            const int totalData4EachTrackLine = 4;
+
+            int freeChannelOffset = -1;
+
+            for (int channel = 0; channel < numChannels; channel++)
+            {
+                int offset = (lastRow * numChannels + channel) * totalData4EachTrackLine;
+                int effectNum = data[offset + 2] & 0xf;
+
+                // the row already breaks or jumps
+                if (effectNum == 0xB || effectNum == 0xD)
+                    return;
+
+                if (freeChannelOffset < 0 && effectNum == 0 && data[offset + 3] == 0)
+                    freeChannelOffset = offset;
+            }
+
+            if (freeChannelOffset < 0)
+            {
+                string errorMessage = string.Format("row {0}: {1}", lastRow, "No free effect slot for the pattern break that ends this short pattern");
+                OnReportProgress(new EventReportProgressArgs(errorMessage, MsgType.ERROR));
+                return;
+            }
+
+            data[freeChannelOffset + 2] = (byte)((data[freeChannelOffset + 2] & 0xf0) + 0xD);
+            data[freeChannelOffset + 3] = 0;
         }
 
         private byte[] GetChannelsNumData(int numChannels)

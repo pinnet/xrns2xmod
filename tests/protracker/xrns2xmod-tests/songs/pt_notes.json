@@ -1,0 +1,20 @@
+{
+ "what": "Every note ProTracker can play safely on an A1200, in order",
+ "expect": "convert",
+ "notes_run": {
+  "pos": 0,
+  "ch": 0,
+  "first_row": 0,
+  "count": 34,
+  "first": "C-1"
+ },
+ "cells": [
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 0,
+   "sample": 1
+  }
+ ],
+ "song": "pt_notes.xrns"
+}

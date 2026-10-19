@@ -1,0 +1,194 @@
+{
+ "what": "All 31 sample slots used",
+ "expect": "convert",
+ "samples_used": 31,
+ "cells": [
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 0,
+   "sample": 1
+  },
+  {
+   "pos": 0,
+   "row": 2,
+   "ch": 1,
+   "sample": 2
+  },
+  {
+   "pos": 0,
+   "row": 4,
+   "ch": 2,
+   "sample": 3
+  },
+  {
+   "pos": 0,
+   "row": 6,
+   "ch": 3,
+   "sample": 4
+  },
+  {
+   "pos": 0,
+   "row": 8,
+   "ch": 0,
+   "sample": 5
+  },
+  {
+   "pos": 0,
+   "row": 10,
+   "ch": 1,
+   "sample": 6
+  },
+  {
+   "pos": 0,
+   "row": 12,
+   "ch": 2,
+   "sample": 7
+  },
+  {
+   "pos": 0,
+   "row": 14,
+   "ch": 3,
+   "sample": 8
+  },
+  {
+   "pos": 0,
+   "row": 16,
+   "ch": 0,
+   "sample": 9
+  },
+  {
+   "pos": 0,
+   "row": 18,
+   "ch": 1,
+   "sample": 10
+  },
+  {
+   "pos": 0,
+   "row": 20,
+   "ch": 2,
+   "sample": 11
+  },
+  {
+   "pos": 0,
+   "row": 22,
+   "ch": 3,
+   "sample": 12
+  },
+  {
+   "pos": 0,
+   "row": 24,
+   "ch": 0,
+   "sample": 13
+  },
+  {
+   "pos": 0,
+   "row": 26,
+   "ch": 1,
+   "sample": 14
+  },
+  {
+   "pos": 0,
+   "row": 28,
+   "ch": 2,
+   "sample": 15
+  },
+  {
+   "pos": 0,
+   "row": 30,
+   "ch": 3,
+   "sample": 16
+  },
+  {
+   "pos": 0,
+   "row": 32,
+   "ch": 0,
+   "sample": 17
+  },
+  {
+   "pos": 0,
+   "row": 34,
+   "ch": 1,
+   "sample": 18
+  },
+  {
+   "pos": 0,
+   "row": 36,
+   "ch": 2,
+   "sample": 19
+  },
+  {
+   "pos": 0,
+   "row": 38,
+   "ch": 3,
+   "sample": 20
+  },
+  {
+   "pos": 0,
+   "row": 40,
+   "ch": 0,
+   "sample": 21
+  },
+  {
+   "pos": 0,
+   "row": 42,
+   "ch": 1,
+   "sample": 22
+  },
+  {
+   "pos": 0,
+   "row": 44,
+   "ch": 2,
+   "sample": 23
+  },
+  {
+   "pos": 0,
+   "row": 46,
+   "ch": 3,
+   "sample": 24
+  },
+  {
+   "pos": 0,
+   "row": 48,
+   "ch": 0,
+   "sample": 25
+  },
+  {
+   "pos": 0,
+   "row": 50,
+   "ch": 1,
+   "sample": 26
+  },
+  {
+   "pos": 0,
+   "row": 52,
+   "ch": 2,
+   "sample": 27
+  },
+  {
+   "pos": 0,
+   "row": 54,
+   "ch": 3,
+   "sample": 28
+  },
+  {
+   "pos": 0,
+   "row": 56,
+   "ch": 0,
+   "sample": 29
+  },
+  {
+   "pos": 0,
+   "row": 58,
+   "ch": 1,
+   "sample": 30
+  },
+  {
+   "pos": 0,
+   "row": 60,
+   "ch": 2,
+   "sample": 31
+  }
+ ],
+ "song": "pt_samples_31.xrns"
+}

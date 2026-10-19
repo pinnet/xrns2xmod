@@ -1,0 +1,35 @@
+{
+ "what": "One note on each of the 4 tracks, each with its own sample",
+ "expect": "convert",
+ "cells": [
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 0,
+   "note": "C-2",
+   "sample": 1
+  },
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 1,
+   "note": "E-2",
+   "sample": 2
+  },
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 2,
+   "note": "G-2",
+   "sample": 3
+  },
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 3,
+   "note": "C-3",
+   "sample": 4
+  }
+ ],
+ "song": "pt_four_tracks.xrns"
+}

@@ -184,11 +184,14 @@ namespace Xrns2XMod
         }
 
         //06xx - Volume slide up with step xx (0601 inserted 256 times will slide from 0 to full volume, 067F inserted twice will do the same).
-        public byte[] VolumeUp(int effVal, int ticksPerRow)
+        // allowFineVolume = false keeps a normal Axy slide unless it would round to no slide at all
+        public byte[] VolumeUp(int effVal, int ticksPerRow, bool allowFineVolume = true)
         {
             byte[] ret = new byte[2];
 
-            bool useFineVolumeCommand = IsFineVolumeCommandCloserToValue(effVal, ticksPerRow);
+            bool useFineVolumeCommand = allowFineVolume
+                ? IsFineVolumeCommandCloserToValue(effVal, ticksPerRow)
+                : effVal > 0 && GetVolumeSlideValue(effVal, ticksPerRow) == 0;
 
             if (useFineVolumeCommand)
                 ret = VolumeFineUp(effVal);
@@ -275,11 +278,14 @@ namespace Xrns2XMod
         }
 
         //07xx - Volume slide down with step xx.
-        public byte[] VolumeDown(int effVal, int ticksPerRow)
+        // allowFineVolume = false keeps a normal Axy slide unless it would round to no slide at all
+        public byte[] VolumeDown(int effVal, int ticksPerRow, bool allowFineVolume = true)
         {
             byte[] ret = new byte[2];
 
-            bool useFineVolumeCommand = IsFineVolumeCommandCloserToValue(effVal, ticksPerRow);
+            bool useFineVolumeCommand = allowFineVolume
+                ? IsFineVolumeCommandCloserToValue(effVal, ticksPerRow)
+                : effVal > 0 && GetVolumeSlideValue(effVal, ticksPerRow) == 0;
 
             if (useFineVolumeCommand)
                 ret = VolumeFineDown(effVal);
