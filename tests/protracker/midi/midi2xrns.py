@@ -6,7 +6,8 @@ The MOD has 4 channels, so notes are spread over at most 4 monophonic voices
 octaves into ProTracker's A1200-safe range (Renoise C-3 to A-5, MOD C-1 to A-3).
 Each voice gets its own simple waveform so the parts are easy to tell apart.
 
-Usage: python midi2xrns.py <song.mid> <out.xrns> [xrns2xmod checkout]
+Usage: python midi2xrns.py [--voices N] <song.mid> <out.xrns> [xrns2xmod checkout]
+       --voices 1 keeps just the top line (the melody), on channel 1
 """
 import os
 import struct
@@ -90,6 +91,10 @@ def octave_shift(keys):
 
 
 def main():
+    global VOICES
+    if len(sys.argv) > 2 and sys.argv[1] == '--voices':
+        VOICES = max(1, min(4, int(sys.argv[2])))
+        del sys.argv[1:3]
     if len(sys.argv) < 3:
         sys.exit(__doc__)
     midi, out = sys.argv[1], sys.argv[2]
@@ -143,8 +148,8 @@ def main():
     name = os.path.splitext(os.path.basename(out))[0]
     song.save(name, {'what': 'converted from ' + os.path.basename(midi), 'expect': 'convert'})
     os.remove(os.path.join(os.path.dirname(os.path.abspath(out)), name + '.json'))
-    print('%s: %d notes, %d voices used, %d dropped (more than 4 at once), %d patterns, %d BPM, shifted %+d semitones'
-          % (name, len(notes) - dropped, sum(1 for v in voices if v), dropped, npat, bpm, shift))
+    print('%s: %d notes, %d voices used, %d dropped (more than %d at once), %d patterns, %d BPM, shifted %+d semitones'
+          % (name, len(notes) - dropped, sum(1 for v in voices if v), dropped, VOICES, npat, bpm, shift))
 
 
 if __name__ == '__main__':
