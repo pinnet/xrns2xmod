@@ -98,6 +98,9 @@ def main():
     sys.argv = [sys.argv[0], src, os.path.dirname(os.path.abspath(out))]
     sys.path.insert(0, kit)
     import make_test_songs as mts
+    # build the waveforms at the PAL C-2 rate the converter resamples to (8287 Hz), so it
+    # copies them 1:1 and each loop stays a whole number of wave cycles
+    mts.RATE = 8287
 
     division, tempo, notes = read_midi(midi)
     ticks_per_row = division / LPB
@@ -124,6 +127,9 @@ def main():
     if npat > 64:
         sys.exit('song too long for a MOD (%d patterns)' % npat)
     song = mts.Song(instruments=VOICES)
+    # Renoise's LoopEnd is one past the last looped frame; loop the whole wave
+    for loop_end in song.root.iter('LoopEnd'):
+        loop_end.text = str(mts.SAMPLE_FRAMES)
     pats = [song.add_pattern() for _ in range(npat)]
     bpm = round(60000000 / tempo)
     song.put(pats[0], 'master', 0, fx=('ZT', '%02X' % max(32, min(255, bpm))))

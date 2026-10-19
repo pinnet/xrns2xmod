@@ -310,7 +310,8 @@ namespace Xrns2XMod
                             BassWrapper.AdjustSampleVolume(handle, mixer, instruments[ci].Samples[0].Volume);
                         }
 
-                        Stream stream = BassWrapper.GetModEncodedSample(mixer, sampleLength, Settings.ForceProTrackerCompatibility);
+                        Stream stream = BassWrapper.GetModEncodedSample(mixer, sampleLength, Settings.ForceProTrackerCompatibility,
+                            instruments[ci].Samples[0].LoopMode.Equals("Off", StringComparison.OrdinalIgnoreCase) == false);
 
                         Bass.BASS_StreamFree(handle);
 
