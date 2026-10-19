@@ -1,0 +1,5 @@
+{
+ "what": "A fifth track is over the limit: refuse, or at least keep the MOD 4-channel",
+ "expect": "refuse_or_4ch",
+ "song": "pt_five_tracks.xrns"
+}

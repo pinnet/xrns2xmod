@@ -478,6 +478,13 @@ namespace Xrns2XModCmd
 
         static void ReportProgress(object sender, EventReportProgressArgs e)
         {
+            // Moving the cursor throws when output is redirected (e.g. piped to a log)
+            if (Console.IsOutputRedirected)
+            {
+                Console.WriteLine(e.message);
+                return;
+            }
+
             Console.CursorLeft = 0;
 
             Console.CursorLeft = cursorLeftPosition;

@@ -1,0 +1,14 @@
+{
+ "what": "A note above A-3 must be dropped, not written, in hardware mode",
+ "expect": "convert",
+ "cells": [
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 0,
+   "note": "---",
+   "renoise": "B-5 (too high)"
+  }
+ ],
+ "song": "pt_note_too_high.xrns"
+}

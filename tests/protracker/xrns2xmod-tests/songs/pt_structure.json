@@ -1,0 +1,36 @@
+{
+ "what": "A 4-position sequence that reuses a pattern, with one 32-line pattern",
+ "expect": "convert",
+ "song_length": 4,
+ "same_pattern": [
+  [
+   0,
+   2
+  ]
+ ],
+ "cells": [
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 0,
+   "note": "C-2"
+  },
+  {
+   "pos": 1,
+   "row": 0,
+   "ch": 0,
+   "note": "E-2"
+  },
+  {
+   "pos": 3,
+   "row": 0,
+   "ch": 0,
+   "note": "G-2"
+  }
+ ],
+ "short_pattern": {
+  "pos": 1,
+  "lines": 32
+ },
+ "song": "pt_structure.xrns"
+}

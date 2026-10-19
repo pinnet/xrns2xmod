@@ -1,0 +1,138 @@
+{
+ "what": "The ProTracker effects we plan to use, and speed, tempo and pattern break",
+ "expect": "convert",
+ "cells": [
+  {
+   "pos": 0,
+   "row": 0,
+   "ch": 0,
+   "effect": "0",
+   "param": "37",
+   "renoise": "0A37 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 4,
+   "ch": 0,
+   "effect": "4",
+   "param": "48",
+   "renoise": "0V48 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 8,
+   "ch": 0,
+   "effect": "1",
+   "param": ">0",
+   "renoise": "0U10 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 12,
+   "ch": 0,
+   "effect": "2",
+   "param": ">0",
+   "renoise": "0D10 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 17,
+   "ch": 0,
+   "effect": "3",
+   "param": ">0",
+   "renoise": "0G10 E-4"
+  },
+  {
+   "pos": 0,
+   "row": 20,
+   "ch": 0,
+   "effect": "C",
+   "param": "10",
+   "renoise": "vol 20 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 24,
+   "ch": 0,
+   "effect": "A",
+   "param": "x>0",
+   "renoise": "0I10 C-4",
+   "alt": [
+    [
+     "E",
+     "A?"
+    ]
+   ]
+  },
+  {
+   "pos": 0,
+   "row": 28,
+   "ch": 0,
+   "effect": "A",
+   "param": "y>0",
+   "renoise": "0O10 ",
+   "alt": [
+    [
+     "E",
+     "B?"
+    ]
+   ]
+  },
+  {
+   "pos": 0,
+   "row": 32,
+   "ch": 0,
+   "effect": "9",
+   "param": ">0",
+   "renoise": "0S80 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 36,
+   "ch": 0,
+   "effect": "E",
+   "param": "93",
+   "renoise": "0R03 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 40,
+   "ch": 0,
+   "effect": "E",
+   "param": "D3",
+   "renoise": "0Q03 C-4"
+  },
+  {
+   "pos": 0,
+   "row": 46,
+   "ch": 0,
+   "effect": "C",
+   "param": "00",
+   "renoise": "vol OFF OFF"
+  }
+ ],
+ "effects_anywhere_in_row": [
+  {
+   "pos": 0,
+   "row": 0,
+   "effect": "F",
+   "param": "04",
+   "renoise": "ZK04 speed 4"
+  },
+  {
+   "pos": 0,
+   "row": 1,
+   "effect": "F",
+   "param": "8C",
+   "renoise": "ZT8C tempo 140"
+  },
+  {
+   "pos": 0,
+   "row": 63,
+   "effect": "D",
+   "param": "00",
+   "renoise": "ZB00 pattern break"
+  }
+ ],
+ "song": "pt_effects.xrns"
+}
