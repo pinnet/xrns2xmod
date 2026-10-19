@@ -579,9 +579,6 @@ namespace Xrns2XMod
                         catch (Exception e)
                         {
                             string errorMessage = string.Format("row {0}, instrument {1}, channel {2}: {3}", currentRow, (sampleNumber-1), currentChannel, e.Message);
-                            // a ProTracker compatible MOD must not silently lose notes
-                            if (Settings.ForceProTrackerCompatibility != PROTRACKER_COMPATIBILITY_MODE.NONE)
-                                throw new ConversionException(errorMessage);
                             OnReportProgress(new EventReportProgressArgs(errorMessage, MsgType.ERROR));
                         }
                     }

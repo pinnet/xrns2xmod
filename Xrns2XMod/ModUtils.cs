@@ -573,10 +573,10 @@ namespace Xrns2XMod
                     StoreChannelPeriod(tonePortamento, command, channel);
                     break;
                 case 'I': //06xx - Volume slide up with step xx (0601 inserted 256 times will slide from 0 to full volume, 067F inserted twice will do the same).
-                    ret = modCommands.VolumeUp(value, ticksPerRow);
+                    ret = modCommands.VolumeUp(value, ticksPerRow, forceProtrackerCompatibility == PROTRACKER_COMPATIBILITY_MODE.NONE);
                     break;
                 case 'O': //07xx - Volume slide down with step xx.
-                    ret = modCommands.VolumeDown(value, ticksPerRow);
+                    ret = modCommands.VolumeDown(value, ticksPerRow, forceProtrackerCompatibility == PROTRACKER_COMPATIBILITY_MODE.NONE);
                     break;
                 case 'P': //08xx - Change the track pre-mixer's panning (00 = full left, 80 = center, FF = full right).
                     ret = modCommands.SetPanning(value);
